@@ -12,12 +12,15 @@ from email import Encoders
 from email import Utils
 from email.header import Header
 
-from Process import Process
+from PEProcess import PEProcess
 
 # pid_list = psutil.get_pid_list()
 # print pid_list
 
-PIDS_DIR_PATH = os.path.abspath(os.path.dirname(__file__)) + '/pid'
+#PIDS_DIR_PATH = os.path.abspath(os.path.dirname(__file__)) + '/pid'
+# 쉘 스트립트에서 지정한 pid 경로를 맞춰 줌
+PIDS_DIR_PATH ="/var/run/data_handler.pid"
+
 print PIDS_DIR_PATH
 NOTIFY_RETRY_COUNT = 10
 WAIT_TIME = 10
@@ -84,7 +87,7 @@ def prepare():
     processes = []
 
     for data in ps_data:
-        process = PJAProcess(data)
+        process = PEProcess(data)
         processes.append(process)
 
 read_pids()
